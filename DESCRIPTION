@@ -2,9 +2,11 @@ Package: GAEZr
 Title: What the Package Does (One Line, Title Case)
 Version: 0.0.0.9000
 Authors@R: 
-    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"),
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
+    c(person("Florian", "Oswald", , "florian.oswald@gmail.com", role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0001-7737-2038")),
+      person("Christophe", "Gouel", , "christophe.gouel@inrae.fr", role = c("ctb"),
+           comment = c(ORCID = "0000-0002-3946-5222")))
+Description: Helps to download GAEZ v4 data directly into R from web server.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
@@ -12,3 +14,16 @@ RoxygenNote: 7.1.2
 Suggests: 
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
+Imports: 
+    dplyr,
+    here,
+    purrr,
+    magrittr,
+    sf,
+    tibble,
+    logger,
+    tidyr,
+    downloader
+Depends: 
+    R (>= 2.10)
+LazyData: true
