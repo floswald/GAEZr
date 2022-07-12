@@ -9,6 +9,8 @@ gaez_url <- function(){"https://s3.eu-west-1.amazonaws.com/data.gaezdev.aws.fao.
 #' for a certain scenario into a corresponding folder on disk.
 #'
 #' @param dir path to folder where GAEZ data will be stored. Default `.`
+#'
+#' Christophe Gouel wrote the core of this function.
 gaez_download_yield <- function(cropcode, variable = "yl", input = "H",
                                 irrigation = "r", co2 = "0",
                                 scenario = c("CRUTS32", "Hist", "8110"),

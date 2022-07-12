@@ -1,5 +1,5 @@
 Package: GAEZr
-Title: What the Package Does (One Line, Title Case)
+Title: Download and Process GAEZ v4 Data
 Version: 0.0.0.9000
 Authors@R: 
     c(person("Florian", "Oswald", , "florian.oswald@gmail.com", role = c("aut", "cre"),
