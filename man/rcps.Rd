@@ -9,3 +9,6 @@ rcps()
 \description{
 RCP Types
 }
+\examples{
+rcps()
+}

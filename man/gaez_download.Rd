@@ -58,6 +58,7 @@ The image on the right of the dropdown menus is your current raster, which can b
 
 In the data viewer, zoom into a region of interest and click on an arbitrary pixel, as illustrated here:
 \figure{GAEZ-select.png}{GAEZ v4 Pixel Selector}
+
 In the appearing popup menu, right click on link \emph{download this raster}. It will have a form like \verb{https://s3.eu-west-1.amazonaws.com/data.gaezdev.aws.fao.org/res05/CRUTS32/Hist/6190H/ycHr0_whe.tif}, which composes as follows:
 \itemize{
 \item Base url: \verb{https://s3.eu-west-1.amazonaws.com/data.gaezdev.aws.fao.org}

@@ -17,3 +17,6 @@ a Scenario is defined by three entries:
 \details{
 This function returns all possible scenarios.
 }
+\examples{
+allscenarios()
+}

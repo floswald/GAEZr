@@ -9,3 +9,6 @@ irrigation()
 \description{
 Irrigation Types
 }
+\examples{
+irrigation()
+}

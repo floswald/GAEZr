@@ -1,6 +1,8 @@
 
 #' RCP Types
 #'
+#' @export
+#' @examples rcps()
 rcps <- function() {
     tibble::tribble(
         ~rcp, ~code,
@@ -12,6 +14,8 @@ rcps <- function() {
 
 #' Irrigation Types
 #'
+#' @export
+#' @examples irrigation()
 irrigation <- function() {
     tibble::tribble(
     ~irrigation, ~code,
@@ -23,6 +27,8 @@ irrigation <- function() {
 
 #' Climate Models
 #'
+#' @export
+#' @examples climate_models()
 climate_models <- function() {
     c(
     "NorESM1-M",
@@ -48,6 +54,8 @@ gaez_filename <- function(crop, variable = "yl", input = "H", irrigation = "r",
 #' 3. the time period
 #'
 #' This function returns all possible scenarios.
+#' @export
+#' @examples allscenarios()
 allscenarios <- function(){
     dplyr::bind_rows(
         tibble::tibble(climate_model = "CRUTS32",

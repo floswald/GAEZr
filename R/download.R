@@ -86,6 +86,9 @@ gaez_download <- function(cropcode, variable = "yl", input = "H",
     )
 }
 
+#' Batch download All Crops
+#'
+#' Downloads all crops for [allscenarios()]
 gaez_download_yield_allcrops <- function(dir = ".", scenarios = allscenarios()){
     data(crops)
     nrow(scenarios) %>%

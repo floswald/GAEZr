@@ -9,3 +9,6 @@ climate_models()
 \description{
 Climate Models
 }
+\examples{
+climate_models()
+}
