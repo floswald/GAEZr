@@ -22,8 +22,8 @@ Imports:
     sf,
     tibble,
     logger,
-    tidyr,
-    downloader
+    tidyr
 Depends: 
     R (>= 2.10)
 LazyData: true
+URL: https://floswald.github.io/GAEZr/

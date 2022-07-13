@@ -3,15 +3,53 @@
 gaez_url <- function(){"https://s3.eu-west-1.amazonaws.com/data.gaezdev.aws.fao.org/"}
 
 
-#' Download Attainable Yield Data
+#' GAEZ v4 Downloader
 #'
-#' Downloads GAEZ yield data for a given crop, input and irrigation settings
-#' for a certain scenario into a corresponding folder on disk.
+#' GAEZ v4 data is available via an online Image Service server. Querying a certain
+#' URL, properly composed, serves a raster image to the user for download. The corresponding base URLs are available in the first table of the [Data Access page of GAEZ](https://gaez-data-portal-hqfao.hub.arcgis.com/pages/data-access-download).
 #'
+#' This function composes a URL string and sends the query to the server. For example, one can download GAEZ data for a certain [GAEZ theme](https://gaez.fao.org/pages/modules), a given crop, input and irrigation settings for a certain scenario into a corresponding folder on disk.
+#' The simplest way to compose an URL is to use the [GAEZ data viewer](https://gaez-data-portal-hqfao.hub.arcgis.com/pages/data-viewer):
+#' 1. choose appropriate theme on top
+#' 2. Choose a variable (if known-else leave blank for default choice): not all variables are available in all combinations
+#' 3. Choose Time period (or leave blank)
+#' 4. Choose Climate Model. available via [climate_models()]
+#' 5. Choose RCP scenario (only if making extrapolation to the future): available via [rcps()]
+#' 6. Choose a crop. via `data(crops)`
+#' 7. Choose Water Supply. codes in [irrigation()]
+#' 8. Choose an input level (high or low)
+#' 9. Choose with or without CO2 fertilizer
+#'
+#' The image on the right of the dropdown menus is your current raster, which can be downloaded. You will notice that not all data is available in all parts of the world.
+#'
+#' @section How To Get the URL String:
+#' In the data viewer, zoom into a region of interest and click on an arbitrary pixel. In the appearing popup menu, right click on link *download this raster*. It will have a form like `https://s3.eu-west-1.amazonaws.com/data.gaezdev.aws.fao.org/res05/CRUTS32/Hist/6190H/ycHr0_whe.tif`, which composes as follows:
+#'
+#' * Base url: `https://s3.eu-west-1.amazonaws.com/data.gaezdev.aws.fao.org`
+#' * GAEZ theme: `res05`
+#' * Climate Model: `CRUTS32`
+#' * Climate Scenario: *Hist* for past, one of several _RCP_ scenarios for future.
+#' * Time Period: `6190H` stands for 1961 thru 1990 *Historical*
+#' * The Variable name: `ycHr0_whe.tif`
+#'     * `yc` stands for *Average attainable yield of current cropland*. Other values in Theme 4 are for example `yl` (*Output Density (potential production divided by total grid cell area*)) or `yx` (*Average attainable yield of best occurring suitability class in grid cell*)
+#'     * `H` is the choice of input level (High or Low)
+#'     * `r` whether rainfed (see [irrigation()])
+#'     * `0` whether there is CO2 fertilization.
+#'     * `whe` is the crop code from `data(crops)`.
+#'
+#' Christophe Gouel wrote the core of this function. Florian Oswald rearranged and wrote the supporting documentation.
+#'
+#' @param cropcode string one `code` from `data(crops)`
+#' @param variable string variable name
+#' @param input string `"H"` or `"L"`
+#' @param irrigation string code from [irrigation()]
+#' @param co2 string `"0"` or `"1"`
+#' @param scenario vector of string with 3 elements: Climate Model, Climate Scenario, Time period.
 #' @param dir path to folder where GAEZ data will be stored. Default `.`
+#' @param res string indicating the GAEZ theme (e.g. `"05"` corresponds to [Theme 4, Suitability and Attainable Yield](https://data.apps.fao.org/map/catalog/srv/eng/catalog.search#/metadata/d4ab84c5-4157-47c4-a544-a2e6244e29bb))
 #'
-#' Christophe Gouel wrote the core of this function.
-gaez_download_yield <- function(cropcode, variable = "yl", input = "H",
+#' @export
+gaez_download <- function(cropcode, variable = "yl", input = "H",
                                 irrigation = "r", co2 = "0",
                                 scenario = c("CRUTS32", "Hist", "8110"),
                                 dir = ".",
@@ -35,8 +73,8 @@ gaez_download_yield <- function(cropcode, variable = "yl", input = "H",
                recursive = TRUE,
                showWarnings = FALSE)
     tryCatch(
-        downloader::download(url,
-                      destfile = dest_file),
+        download.file(url,
+                      destfile = dest_file,method = "wget",quiet = TRUE),
         error = function(x) {
             file.remove(dest_file)
             logger::log_error("{url} not downloaded")
@@ -59,23 +97,3 @@ gaez_download_yield_allcrops <- function(dir = ".", scenarios = allscenarios()){
                 })
         })
 }
-
-# nrow(scen) %>%
-#     seq_len() %>%
-#     walk(function(iscen) {
-#         # Create diretories for the scenario
-#         dir.create(here("data", "gaez4",
-#                         scen[[iscen, "climate_model"]],
-#                         scen[[iscen, "rcp"]],
-#                         scen[[iscen, "time_period"]]),
-#                    recursive = T,
-#                    showWarnings = F)
-#         # Download for all crops and the 2 CO2 fertilization variants
-#         expand_grid(crop = crops[["code"]], co2 = c("", "0")) %>%
-#             pwalk(function(crop, co2) {
-#                 download_gaez_yield(crop = crop,
-#                                     co2 = co2,
-#                                     scenario = unlist(scen[iscen,]),
-#                                     dir = here("data", "gaez4"))
-#             })
-#     })
