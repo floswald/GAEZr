@@ -9,7 +9,8 @@ gaez_url <- function(){"https://s3.eu-west-1.amazonaws.com/data.gaezdev.aws.fao.
 #' URL, properly composed, serves a raster image to the user for download. The corresponding base URLs are available in the first table of the [Data Access page of GAEZ](https://gaez-data-portal-hqfao.hub.arcgis.com/pages/data-access-download).
 #'
 #' This function composes a URL string and sends the query to the server. For example, one can download GAEZ data for a certain [GAEZ theme](https://gaez.fao.org/pages/modules), a given crop, input and irrigation settings for a certain scenario into a corresponding folder on disk.
-#' The simplest way to compose an URL is to use the [GAEZ data viewer](https://gaez-data-portal-hqfao.hub.arcgis.com/pages/data-viewer):
+#' The simplest way to compose an URL is to use the [GAEZ data viewer](https://gaez-data-portal-hqfao.hub.arcgis.com/pages/data-viewer), following the steps below. The viewer looks like this:
+#' ![](GAEZ-viewer.png "GAEZ v4 Data Viewer")
 #' 1. choose appropriate theme on top
 #' 2. Choose a variable (if known-else leave blank for default choice): not all variables are available in all combinations
 #' 3. Choose Time period (or leave blank)
@@ -23,7 +24,10 @@ gaez_url <- function(){"https://s3.eu-west-1.amazonaws.com/data.gaezdev.aws.fao.
 #' The image on the right of the dropdown menus is your current raster, which can be downloaded. You will notice that not all data is available in all parts of the world.
 #'
 #' @section How To Get the URL String:
-#' In the data viewer, zoom into a region of interest and click on an arbitrary pixel. In the appearing popup menu, right click on link *download this raster*. It will have a form like `https://s3.eu-west-1.amazonaws.com/data.gaezdev.aws.fao.org/res05/CRUTS32/Hist/6190H/ycHr0_whe.tif`, which composes as follows:
+#' In the data viewer, zoom into a region of interest and click on an arbitrary pixel, as illustrated here:
+#' ![](GAEZ-select.png "GAEZ v4 Pixel Selector")
+#'
+#' In the appearing popup menu, right click on link *download this raster*. It will have a form like `https://s3.eu-west-1.amazonaws.com/data.gaezdev.aws.fao.org/res05/CRUTS32/Hist/6190H/ycHr0_whe.tif`, which composes as follows:
 #'
 #' * Base url: `https://s3.eu-west-1.amazonaws.com/data.gaezdev.aws.fao.org`
 #' * GAEZ theme: `res05`
