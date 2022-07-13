@@ -81,7 +81,7 @@ gaez_download <- function(cropcode, variable = "yl", input = "H",
                       destfile = dest_file,method = "wget",quiet = TRUE),
         error = function(x) {
             file.remove(dest_file)
-            logger::log_error("{url} not downloaded")
+            logger::log_error("{filename} not downloaded")
         }
     )
 }
@@ -89,7 +89,7 @@ gaez_download <- function(cropcode, variable = "yl", input = "H",
 #' Batch download All Crops
 #'
 #' Downloads all crops for [allscenarios()]
-gaez_download_yield_allcrops <- function(dir = ".", scenarios = allscenarios()){
+gaez_download_yield_allcrops <- function(dir = ".", scenarios = allscenarios(), var = "yl"){
     data(crops)
     nrow(scenarios) %>%
         seq_len() %>%
@@ -97,7 +97,8 @@ gaez_download_yield_allcrops <- function(dir = ".", scenarios = allscenarios()){
             # Download for all crops and the 2 CO2 fertilization variants
             tidyr::expand_grid(crop = crops[["code"]], co2 = c("", "0")) %>%
                 purrr::pwalk(function(crop, co2) {
-                    gaez_download_yield(cropcode = crop,
+                    gaez_download(cropcode = crop,
+                                  variable = var,
                                         co2 = co2,
                                         scenario = unlist(scenarios[iscen,]),
                                         dir = dir)

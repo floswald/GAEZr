@@ -40,6 +40,10 @@ climate_models <- function() {
     )
 }
 
+#' Gaez Filename Constructor
+#'
+#' @export
+#' @examples gaez_filename("popeye-spinach","yx","L","r","1")
 gaez_filename <- function(crop, variable = "yl", input = "H", irrigation = "r",
                           co2 = "0") {
     paste0(variable, input, irrigation, co2, "_", crop, ".tif")

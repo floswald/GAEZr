@@ -4,7 +4,7 @@
 \alias{gaez_download_yield_allcrops}
 \title{Batch download All Crops}
 \usage{
-gaez_download_yield_allcrops(dir = ".", scenarios = allscenarios())
+gaez_download_yield_allcrops(dir = ".", scenarios = allscenarios(), var = "yl")
 }
 \description{
 Downloads all crops for \code{\link[=allscenarios]{allscenarios()}}
