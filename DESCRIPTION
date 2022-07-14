@@ -1,6 +1,6 @@
 Package: GAEZr
 Title: Download and Process GAEZ v4 Data
-Version: 0.0.0.9000
+Version: 0.0.1
 Authors@R: 
     c(person("Florian", "Oswald", , "florian.oswald@gmail.com", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0001-7737-2038")),
