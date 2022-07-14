@@ -6,6 +6,7 @@
 
 [![DOI](https://zenodo.org/badge/513163085.svg)](https://zenodo.org/badge/latestdoi/513163085)
 
+[![DOCS](https://img.shields.io/badge/docs-Documentation-blue)](floswald.github.io/gaezr/)
 
 <!-- badges: end -->
 
