@@ -51,7 +51,7 @@ URL, properly composed, serves a raster image to the user for download. The corr
 <span>  variable <span class="op">=</span> <span class="st">"yl"</span>,</span>
 <span>  input <span class="op">=</span> <span class="st">"H"</span>,</span>
 <span>  irrigation <span class="op">=</span> <span class="st">"r"</span>,</span>
-<span>  co2 <span class="op">=</span> <span class="st">"0"</span>,</span>
+<span>  co2 <span class="op">=</span> <span class="st">""</span>,</span>
 <span>  scenario <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"CRUTS32"</span>, <span class="st">"Hist"</span>, <span class="st">"8110"</span><span class="op">)</span>,</span>
 <span>  dir <span class="op">=</span> <span class="st">"."</span>,</span>
 <span>  res <span class="op">=</span> <span class="st">"res05/"</span></span>
@@ -77,11 +77,13 @@ URL, properly composed, serves a raster image to the user for download. The corr
 
 
 <dt>co2</dt>
-<dd><p>string <code>"0"</code> or <code>"1"</code></p></dd>
+<dd><p>string <code>""</code> for CO2 fertilization (the default) or <code>"0"</code> without
+(not available for historical climate)</p></dd>
 
 
 <dt>scenario</dt>
-<dd><p>vector of string with 3 elements: Climate Model, Climate Scenario, Time period.</p></dd>
+<dd><p>vector of string with 3 elements: Climate Model, Climate
+Scenario, Time period.</p></dd>
 
 
 <dt>dir</dt>
@@ -89,7 +91,8 @@ URL, properly composed, serves a raster image to the user for download. The corr
 
 
 <dt>res</dt>
-<dd><p>string indicating the GAEZ theme (e.g. <code>"05"</code> corresponds to <a href="https://data.apps.fao.org/map/catalog/srv/eng/catalog.search#/metadata/d4ab84c5-4157-47c4-a544-a2e6244e29bb" class="external-link">Theme 4, Suitability and Attainable Yield</a>)</p></dd>
+<dd><p>string indicating the GAEZ theme (e.g. <code>"05"</code> corresponds to
+<a href="https://data.apps.fao.org/map/catalog/srv/eng/catalog.search#/metadata/d4ab84c5-4157-47c4-a544-a2e6244e29bb" class="external-link">Theme 4, Suitability and Attainable Yield</a>)</p></dd>
 
 </dl></div>
     <div id="details">
@@ -113,7 +116,10 @@ The simplest way to compose an URL is to use the <a href="https://gaez-data-port
 
 <p>In the data viewer, zoom into a region of interest and click on an arbitrary pixel, as illustrated here:
 <img src="figures/GAEZ-select.png" alt="GAEZ v4 Pixel Selector"></p>
-<p>In the appearing popup menu, right click on link <em>download this raster</em>. It will have a form like <code>https://s3.eu-west-1.amazonaws.com/data.gaezdev.aws.fao.org/res05/CRUTS32/Hist/6190H/ycHr0_whe.tif</code>, which composes as follows:</p><ul><li><p>Base url: <code>https://s3.eu-west-1.amazonaws.com/data.gaezdev.aws.fao.org</code></p></li>
+<p>In the appearing popup menu, right click on link <em>download this raster</em>. It
+will have a form like
+<code>https://s3.eu-west-1.amazonaws.com/data.gaezdev.aws.fao.org/res05/CRUTS32/Hist/6190H/ycHr0_whe.tif</code>,
+which composes as follows:</p><ul><li><p>Base url: <code>https://s3.eu-west-1.amazonaws.com/data.gaezdev.aws.fao.org</code></p></li>
 <li><p>GAEZ theme: <code>res05</code></p></li>
 <li><p>Climate Model: <code>CRUTS32</code></p></li>
 <li><p>Climate Scenario: <em>Hist</em> for past, one of several <em>RCP</em> scenarios for future.</p></li>
@@ -127,6 +133,12 @@ The simplest way to compose an URL is to use the <a href="https://gaez-data-port
 </ul><p>Christophe Gouel wrote the core of this function. Florian Oswald rearranged and wrote the supporting documentation.</p>
     </div>
 
+    <div id="ref-examples">
+    <h2>Examples</h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">gaez_download</span><span class="op">(</span><span class="st">"whe"</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+</code></pre></div>
+    </div>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top"><h2 data-toc-skip>Contents</h2>
