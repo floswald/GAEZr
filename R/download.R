@@ -3,12 +3,12 @@
 gaez_url <- function(){"https://s3.eu-west-1.amazonaws.com/data.gaezdev.aws.fao.org/"}
 
 
-#' GAEZ v4 Downloader
+#' GAEZ v4 Crop Yield Downloader
 #'
 #' GAEZ v4 data is available via an online Image Service server. Querying a certain
 #' URL, properly composed, serves a raster image to the user for download. The corresponding base URLs are available in the first table of the [Data Access page of GAEZ](https://gaez-data-portal-hqfao.hub.arcgis.com/pages/data-access-download).
 #'
-#' This function composes a URL string and sends the query to the server. For example, one can download GAEZ data for a certain [GAEZ theme](https://gaez.fao.org/pages/modules), a given crop, input and irrigation settings for a certain scenario into a corresponding folder on disk.
+#' This function composes a URL string and sends the query to the server. For example, one can download GAEZ data for a certain [GAEZ theme](https://gaez.fao.org/pages/modules), a given crop, input and irrigation settings for a certain scenario into a corresponding folder on disk. _This function is helpful for Crop Yield Data._
 #' The simplest way to compose an URL is to use the [GAEZ data viewer](https://gaez-data-portal-hqfao.hub.arcgis.com/pages/data-viewer), following the steps below. The viewer looks like this:
 #' ![](GAEZ-viewer.png "GAEZ v4 Data Viewer")
 #' 1. choose appropriate theme on top
@@ -96,6 +96,7 @@ gaez_download <- function(cropcode, variable = "yl", input = "H",
     )
 }
 
+
 #' Batch download All Crops
 #'
 #' Downloads all crops for [allscenarios()]
@@ -119,3 +120,39 @@ gaez_download_yield_allcrops <- function(dir = ".",
                 })
         })
 }
+
+
+#' Land and Water Resources Download
+#'
+#' Same as [gaez_download()] but for the Land and Water Resources Theme.
+#'
+#' Notice that this vectorizes naturally for a vector of variable names within the same subtheme.
+#'
+#' @export
+#' @examples
+#' terrain_vars = terrain_resources_varnames()[["variable"]]
+#' length(terrain_vars)
+#' gaez_LR_download(subtheme = "ter",variable = terrain_vars)
+gaez_LR_download <- function(dir = ".",subtheme = "soi1", variable = "hwsd_domi_30s") {
+    filename <- paste0(variable,".tif")
+
+    url <- paste0(gaez_url(), paste0("LR/",subtheme,"/",variable,".tif"))
+    logger::log_info("downloading from {url}")
+
+    dest_dir <- file.path(dir,"LR",subtheme)
+    dest_file <- file.path(dest_dir,filename)
+    dir.create(dest_dir,
+               recursive = TRUE,
+               showWarnings = FALSE)
+    tryCatch(
+        download.file(url,
+                      destfile = dest_file,
+                      quiet = TRUE,
+                      mode = "wb"),
+        error = function(x) {
+            file.remove(dest_file)
+            logger::log_error("{filename} not downloaded")
+        }
+    )
+}
+
