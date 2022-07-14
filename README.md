@@ -2,6 +2,11 @@
 # GAEZr
 
 <!-- badges: start -->
+
+
+[![DOI](https://zenodo.org/badge/513163085.svg)](https://zenodo.org/badge/latestdoi/513163085)
+
+
 <!-- badges: end -->
 
 The goal of GAEZr is to facilitate downloading and processing of [GAEZ v4](https://gaez.fao.org/) data in R. The main functionality is to download raster data via the [`gaez_download()`](reference/gaez_download.html) function from this [GAEZ web viewer](https://gaez-data-portal-hqfao.hub.arcgis.com/pages/data-viewer):
