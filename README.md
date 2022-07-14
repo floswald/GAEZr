@@ -19,18 +19,24 @@ The goal of GAEZr is to facilitate downloading and processing of [GAEZ v4](https
 You can install the development version of GAEZr like so:
 
 ``` r
-devtools::install_github(repo = "floswald/GAEZr")
+remotes::install_github(repo = "floswald/GAEZr")
 ```
 
-## Example
+## Examples
 
-This is a basic example which shows you how to solve a common problem:
+Download wheat potential yields under the 1981-2010 climate.
 
 ``` r
 library(GAEZr)
-gaez_download_yield_allcrops()  # will download all scenarios and all crops
+gaez_download("whe")
+```
+
+Download potential yields for all crops and all scenarios
+
+``` r
+gaez_download_yield_allcrops()
 ```
 
 ## Other Packages
 
-* `https://gaez.fao.org/pages/pyaez`
+* <https://gaez.fao.org/pages/pyaez>

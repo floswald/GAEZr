@@ -27,7 +27,10 @@ gaez_url <- function(){"https://s3.eu-west-1.amazonaws.com/data.gaezdev.aws.fao.
 #' In the data viewer, zoom into a region of interest and click on an arbitrary pixel, as illustrated here:
 #' ![](GAEZ-select.png "GAEZ v4 Pixel Selector")
 #'
-#' In the appearing popup menu, right click on link *download this raster*. It will have a form like `https://s3.eu-west-1.amazonaws.com/data.gaezdev.aws.fao.org/res05/CRUTS32/Hist/6190H/ycHr0_whe.tif`, which composes as follows:
+#' In the appearing popup menu, right click on link *download this raster*. It
+#' will have a form like
+#' `https://s3.eu-west-1.amazonaws.com/data.gaezdev.aws.fao.org/res05/CRUTS32/Hist/6190H/ycHr0_whe.tif`,
+#' which composes as follows:
 #'
 #' * Base url: `https://s3.eu-west-1.amazonaws.com/data.gaezdev.aws.fao.org`
 #' * GAEZ theme: `res05`
@@ -47,14 +50,19 @@ gaez_url <- function(){"https://s3.eu-west-1.amazonaws.com/data.gaezdev.aws.fao.
 #' @param variable string variable name
 #' @param input string `"H"` or `"L"`
 #' @param irrigation string code from [irrigation()]
-#' @param co2 string `"0"` or `"1"`
-#' @param scenario vector of string with 3 elements: Climate Model, Climate Scenario, Time period.
+#' @param co2 string `""` for CO2 fertilization (the default) or `"0"` without
+#' (not available for historical climate)
+#' @param scenario vector of string with 3 elements: Climate Model, Climate
+#' Scenario, Time period.
 #' @param dir path to folder where GAEZ data will be stored. Default `.`
-#' @param res string indicating the GAEZ theme (e.g. `"05"` corresponds to [Theme 4, Suitability and Attainable Yield](https://data.apps.fao.org/map/catalog/srv/eng/catalog.search#/metadata/d4ab84c5-4157-47c4-a544-a2e6244e29bb))
+#' @param res string indicating the GAEZ theme (e.g. `"05"` corresponds to
+#' [Theme 4, Suitability and Attainable Yield](https://data.apps.fao.org/map/catalog/srv/eng/catalog.search#/metadata/d4ab84c5-4157-47c4-a544-a2e6244e29bb))
+#' @examples
+#' gaez_download("whe")
 #'
 #' @export
 gaez_download <- function(cropcode, variable = "yl", input = "H",
-                                irrigation = "r", co2 = "0",
+                                irrigation = "r", co2 = "",
                                 scenario = c("CRUTS32", "Hist", "8110"),
                                 dir = ".",
                                 res = "res05/") {
@@ -78,7 +86,9 @@ gaez_download <- function(cropcode, variable = "yl", input = "H",
                showWarnings = FALSE)
     tryCatch(
         download.file(url,
-                      destfile = dest_file,method = "wget",quiet = TRUE),
+                      destfile = dest_file,
+                      quiet = TRUE,
+                      mode = "wb"),
         error = function(x) {
             file.remove(dest_file)
             logger::log_error("{filename} not downloaded")
@@ -89,7 +99,11 @@ gaez_download <- function(cropcode, variable = "yl", input = "H",
 #' Batch download All Crops
 #'
 #' Downloads all crops for [allscenarios()]
-gaez_download_yield_allcrops <- function(dir = ".", scenarios = allscenarios(), var = "yl"){
+#'
+#' @export
+gaez_download_yield_allcrops <- function(dir = ".",
+                                         scenarios = allscenarios(),
+                                         var = "yl"){
     data(crops)
     nrow(scenarios) %>%
         seq_len() %>%

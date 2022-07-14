@@ -9,7 +9,7 @@ gaez_download(
   variable = "yl",
   input = "H",
   irrigation = "r",
-  co2 = "0",
+  co2 = "",
   scenario = c("CRUTS32", "Hist", "8110"),
   dir = ".",
   res = "res05/"
@@ -24,13 +24,16 @@ gaez_download(
 
 \item{irrigation}{string code from \code{\link[=irrigation]{irrigation()}}}
 
-\item{co2}{string \code{"0"} or \code{"1"}}
+\item{co2}{string \code{""} for CO2 fertilization (the default) or \code{"0"} without
+(not available for historical climate)}
 
-\item{scenario}{vector of string with 3 elements: Climate Model, Climate Scenario, Time period.}
+\item{scenario}{vector of string with 3 elements: Climate Model, Climate
+Scenario, Time period.}
 
 \item{dir}{path to folder where GAEZ data will be stored. Default \code{.}}
 
-\item{res}{string indicating the GAEZ theme (e.g. \code{"05"} corresponds to \href{https://data.apps.fao.org/map/catalog/srv/eng/catalog.search#/metadata/d4ab84c5-4157-47c4-a544-a2e6244e29bb}{Theme 4, Suitability and Attainable Yield})}
+\item{res}{string indicating the GAEZ theme (e.g. \code{"05"} corresponds to
+\href{https://data.apps.fao.org/map/catalog/srv/eng/catalog.search#/metadata/d4ab84c5-4157-47c4-a544-a2e6244e29bb}{Theme 4, Suitability and Attainable Yield})}
 }
 \description{
 GAEZ v4 data is available via an online Image Service server. Querying a certain
@@ -59,7 +62,10 @@ The image on the right of the dropdown menus is your current raster, which can b
 In the data viewer, zoom into a region of interest and click on an arbitrary pixel, as illustrated here:
 \figure{GAEZ-select.png}{GAEZ v4 Pixel Selector}
 
-In the appearing popup menu, right click on link \emph{download this raster}. It will have a form like \verb{https://s3.eu-west-1.amazonaws.com/data.gaezdev.aws.fao.org/res05/CRUTS32/Hist/6190H/ycHr0_whe.tif}, which composes as follows:
+In the appearing popup menu, right click on link \emph{download this raster}. It
+will have a form like
+\verb{https://s3.eu-west-1.amazonaws.com/data.gaezdev.aws.fao.org/res05/CRUTS32/Hist/6190H/ycHr0_whe.tif},
+which composes as follows:
 \itemize{
 \item Base url: \verb{https://s3.eu-west-1.amazonaws.com/data.gaezdev.aws.fao.org}
 \item GAEZ theme: \code{res05}
@@ -79,3 +85,7 @@ In the appearing popup menu, right click on link \emph{download this raster}. It
 Christophe Gouel wrote the core of this function. Florian Oswald rearranged and wrote the supporting documentation.
 }
 
+\examples{
+gaez_download("whe")
+
+}
