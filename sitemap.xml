@@ -16,10 +16,16 @@
     <loc>https://floswald.github.io/GAEZr/index.html</loc>
   </url>
   <url>
+    <loc>https://floswald.github.io/GAEZr/reference/GAEZr-package.html</loc>
+  </url>
+  <url>
     <loc>https://floswald.github.io/GAEZr/reference/allscenarios.html</loc>
   </url>
   <url>
     <loc>https://floswald.github.io/GAEZr/reference/climate_models.html</loc>
+  </url>
+  <url>
+    <loc>https://floswald.github.io/GAEZr/reference/gaez_LR_download.html</loc>
   </url>
   <url>
     <loc>https://floswald.github.io/GAEZr/reference/gaez_download.html</loc>
@@ -41,5 +47,20 @@
   </url>
   <url>
     <loc>https://floswald.github.io/GAEZr/reference/rcps.html</loc>
+  </url>
+  <url>
+    <loc>https://floswald.github.io/GAEZr/reference/soil_resources_varnames.html</loc>
+  </url>
+  <url>
+    <loc>https://floswald.github.io/GAEZr/reference/soil_suitability_varnames.html</loc>
+  </url>
+  <url>
+    <loc>https://floswald.github.io/GAEZr/reference/terrain_resources_varnames.html</loc>
+  </url>
+  <url>
+    <loc>https://floswald.github.io/GAEZr/reference/theme1_subs.html</loc>
+  </url>
+  <url>
+    <loc>https://floswald.github.io/GAEZr/reference/theme4_varnames.html</loc>
   </url>
 </urlset>
