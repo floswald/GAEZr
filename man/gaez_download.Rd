@@ -2,7 +2,7 @@
 % Please edit documentation in R/download.R
 \name{gaez_download}
 \alias{gaez_download}
-\title{GAEZ v4 Downloader}
+\title{GAEZ v4 Crop Yield Downloader}
 \usage{
 gaez_download(
   cropcode,
@@ -40,7 +40,7 @@ GAEZ v4 data is available via an online Image Service server. Querying a certain
 URL, properly composed, serves a raster image to the user for download. The corresponding base URLs are available in the first table of the \href{https://gaez-data-portal-hqfao.hub.arcgis.com/pages/data-access-download}{Data Access page of GAEZ}.
 }
 \details{
-This function composes a URL string and sends the query to the server. For example, one can download GAEZ data for a certain \href{https://gaez.fao.org/pages/modules}{GAEZ theme}, a given crop, input and irrigation settings for a certain scenario into a corresponding folder on disk.
+This function composes a URL string and sends the query to the server. For example, one can download GAEZ data for a certain \href{https://gaez.fao.org/pages/modules}{GAEZ theme}, a given crop, input and irrigation settings for a certain scenario into a corresponding folder on disk. \emph{This function is helpful for Crop Yield Data.}
 The simplest way to compose an URL is to use the \href{https://gaez-data-portal-hqfao.hub.arcgis.com/pages/data-viewer}{GAEZ data viewer}, following the steps below. The viewer looks like this:
 \figure{GAEZ-viewer.png}{GAEZ v4 Data Viewer}
 \enumerate{

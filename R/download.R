@@ -67,7 +67,7 @@ gaez_download <- function(cropcode, variable = "yl", input = "H",
                                 dir = ".",
                                 res = "res05/") {
     if (length(scenario) != 3){
-        error("`scenario` is a vector with 3 entries: climate model, RCP, time period")
+        stop("`scenario` is a vector with 3 entries: climate model, RCP, time period")
     }
     filename <- gaez_filename(cropcode,
                               variable = variable,
@@ -105,7 +105,7 @@ gaez_download <- function(cropcode, variable = "yl", input = "H",
 gaez_download_yield_allcrops <- function(dir = ".",
                                          scenarios = allscenarios(),
                                          var = "yl"){
-    data(crops)
+    data(crops, envir = environment())
     nrow(scenarios) %>%
         seq_len() %>%
         purrr::walk(function(iscen) {

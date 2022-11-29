@@ -10,19 +10,18 @@ Description: Helps to download GAEZ v4 data directly into R from web server.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.0
+RoxygenNote: 7.2.2
 Suggests: 
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
 Imports: 
     dplyr,
-    here,
     purrr,
     magrittr,
-    sf,
     tibble,
     logger,
-    tidyr
+    tidyr,
+    utils
 Depends: 
     R (>= 2.10)
 LazyData: true
